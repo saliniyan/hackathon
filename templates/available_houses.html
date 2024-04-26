@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Available Houses</title>
+</head>
+<body>
+    <h1>Available Houses</h1>
+    {% if available_results %}
+        <ul>
+            {% for result in available_results %}
+                <li>
+                    {{ result }}
+                    <form action="/book" method="POST">
+                        <input type="hidden" name="house_id" value="{{ result.split()[1] }}">
+                        <input type="submit" value="Book Now">
+                    </form>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>Sorry, no houses are available for your requested dates or rooms.</p>
+    {% endif %}
+</body>
+</html>
